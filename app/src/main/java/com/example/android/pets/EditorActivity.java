@@ -194,6 +194,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
      * Perform the deletion of the pet in the database.
      */
     private void deletePet() {
+        if (mUri == null) {
+            return;
+        }
         int r = getContentResolver().delete(mUri, null, null);
         if (r == 1) {
             Toast.makeText(this, R.string.editor_delete_pet_successful, Toast.LENGTH_SHORT).show();
