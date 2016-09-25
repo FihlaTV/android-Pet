@@ -25,13 +25,6 @@ import com.example.android.pets.data.PetContract.PetEntry;
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int PET_LOADER = 0;
-    private static final String[] PROJECTION = {
-            PetEntry._ID,
-            PetEntry.COLUMN_PET_BREED,
-            PetEntry.COLUMN_PET_GENDER,
-            PetEntry.COLUMN_PET_NAME,
-            PetEntry.COLUMN_PET_WEIGHT
-    };
 
     private PetCursorAdapter mCursorAdapter;
 
@@ -117,7 +110,12 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, PetEntry.CONTENT_URI, PROJECTION, null, null, null);
+        String[] projection = {
+                PetEntry._ID,
+                PetEntry.COLUMN_PET_BREED,
+                PetEntry.COLUMN_PET_NAME,
+        };
+        return new CursorLoader(this, PetEntry.CONTENT_URI, projection, null, null, null);
     }
 
     @Override
